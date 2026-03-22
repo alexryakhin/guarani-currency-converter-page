@@ -105,7 +105,8 @@ a:hover {
 .site-header__inner {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) max(var(--space-3), env(safe-area-inset-right, 0px)) var(--space-2)
+    max(var(--space-3), env(safe-area-inset-left, 0px));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -194,13 +195,16 @@ a:hover {
     display: block;
   }
 
+  /* Anchor to `.site-header` (sticky), not `.nav` — otherwise left/right span only the hamburger width. */
   .nav__links {
     position: absolute;
     left: 0;
     right: 0;
     top: 100%;
+    z-index: 110;
     flex-direction: column;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) max(var(--space-3), env(safe-area-inset-right, 0px)) var(--space-2)
+      max(var(--space-3), env(safe-area-inset-left, 0px));
     background: var(--surface-low);
     border-bottom: 1px solid var(--outline-ghost);
     display: none;
@@ -215,12 +219,14 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
   padding: 0.65rem 1.25rem;
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 600;
+  line-height: 1.2;
   border-radius: var(--radius-md);
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
@@ -256,7 +262,8 @@ main {
 .wrap {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 var(--space-3);
+  padding-left: max(var(--space-3), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-3), env(safe-area-inset-right, 0px));
 }
 
 /* One text column for legal/support: hero + prose share the same measure and left edge. */
@@ -269,8 +276,16 @@ main {
   box-sizing: border-box;
 }
 
+/* Vertical-only: horizontal insets come from `.wrap` inside (do not merge `.hero` + `.wrap` on one node — it zeroed side padding). */
 .hero {
-  padding: var(--space-6) 0 var(--space-5);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-5);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: var(--space-5);
+  }
 }
 
 .hero__grid {
@@ -280,14 +295,34 @@ main {
   align-items: center;
 }
 
+.hero__grid > * {
+  min-width: 0;
+}
+
 @media (max-width: 900px) {
+  .hero__copy {
+    text-align: center;
+  }
+
   .hero__grid {
     grid-template-columns: 1fr;
+    align-items: stretch;
+    justify-items: stretch;
   }
 
   .hero__shot {
     justify-self: center;
-    max-width: 260px;
+    width: 100%;
+    max-width: 240px;
+    margin-inline: auto;
+  }
+
+  .hero__shot img {
+    max-width: 100%;
+  }
+
+  .hero__actions {
+    justify-content: center;
   }
 }
 
@@ -316,10 +351,28 @@ main {
   max-width: 36ch;
 }
 
+@media (max-width: 900px) {
+  .hero__lead {
+    max-width: none;
+  }
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
 }
 
 .hero__shot {
@@ -327,11 +380,16 @@ main {
   justify-self: end;
   width: 100%;
   max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero__shot img {
   width: 100%;
+  max-width: 280px;
   height: auto;
+  margin-inline: auto;
 }
 
 .section {
@@ -526,7 +584,10 @@ main {
 
 .site-footer {
   margin-top: var(--space-6);
-  padding: var(--space-4) var(--space-3);
+  padding-top: var(--space-4);
+  padding-right: max(var(--space-3), env(safe-area-inset-right, 0px));
+  padding-bottom: max(var(--space-4), env(safe-area-inset-bottom, 0px));
+  padding-left: max(var(--space-3), env(safe-area-inset-left, 0px));
   background: var(--surface-low);
   border-top: 1px solid var(--outline-ghost);
 }
