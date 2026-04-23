@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Extension test page | Guaraní Currency Converter</title>
+    <meta
+      name="description"
+      content="A page with common Paraguayan guaraní (PYG) price formats to test the Guaraní Currency Converter Safari extension."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://alexryakhin.github.io/guarani-currency-converter-page/test.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Guaraní Currency Converter" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Extension test page | Guaraní Currency Converter" />
+    <meta
+      property="og:description"
+      content="Common PYG price formats for testing the Safari extension (₲, Gs., PYG...)."
+    />
+    <meta property="og:url" content="https://alexryakhin.github.io/guarani-currency-converter-page/test.html" />
+    <meta
+      property="og:image"
+      content="https://alexryakhin.github.io/guarani-currency-converter-page/favicon/web-app-manifest-512x512.png"
+    />
+    <meta name="theme-color" content="#00261b" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Extension test page | Guaraní Currency Converter",
+        "description": "A page with common Paraguayan guaraní (PYG) price formats to test the Guaraní Currency Converter Safari extension.",
+        "url": "https://alexryakhin.github.io/guarani-currency-converter-page/test.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Guaraní Currency Converter",
+          "url": "https://alexryakhin.github.io/guarani-currency-converter-page/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">
+          <img class="brand__mark" src="favicon/favicon.svg" width="28" height="28" alt="" />
+          <span class="brand__name">Guaraní Currency Converter</span>
+          <span class="brand__tag">PYG</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+            <span class="visually-hidden">Menu</span>
+            <span class="nav__toggle-bar"></span>
+            <span class="nav__toggle-bar"></span>
+            <span class="nav__toggle-bar"></span>
+          </button>
+          <ul id="nav-menu" class="nav__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="test.html" aria-current="page">Test</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="wrap wrap--document">
+        <div class="page-hero">
+          <h1>Extension test page</h1>
+          <p>
+            This page contains common guaraní price formats found on Paraguayan sites. Enable the
+            Safari extension and you should see the “≈ USD” (or selected currency) annotation appear
+            next to the values below.
+          </p>
+        </div>
+
+        <div class="prose">
+          <h2>Inline text</h2>
+          <ul>
+            <li>₲5,870,000</li>
+            <li>Gs. 50.000</li>
+            <li>G. 1.250.000</li>
+            <li>PYG3,150,000</li>
+            <li>PYG 3.150.000</li>
+            <li>50.000 Gs.</li>
+            <li>1.250.000 G.</li>
+            <li>3,150,000 PYG</li>
+            <li>5.870.000 ₲</li>
+            <li>₲ 1 250 000</li>
+            <li>₲ 1 250 000</li>
+            <li>1'250'000 Gs.</li>
+          </ul>
+
+          <h2>Split symbol and number (common in storefront UIs)</h2>
+          <p>
+            <span style="font-weight: 700">₲</span><span style="font-weight: 700">5,870,000</span>
+          </p>
+          <p>
+            <span style="font-weight: 700">5,870,000</span><span style="font-weight: 700"> ₲</span>
+          </p>
+
+          <h2>Dynamic content</h2>
+          <p id="dynamic-price">Loading…</p>
+          <script>
+            setTimeout(function () {
+              document.getElementById("dynamic-price").textContent = "120.000 Gs.";
+            }, 800);
+          </script>
+
+          <h2>Notes</h2>
+          <p>
+            If you don’t see conversions, check Safari’s extension permissions for this site and
+            confirm the extension is enabled for “All Websites” or this domain.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="site-footer__nav">
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy policy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <p class="site-footer__copy">© 2026 Guaraní Currency Converter</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
+
